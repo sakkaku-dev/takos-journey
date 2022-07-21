@@ -146,7 +146,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="##VAR_GAME_NAME"
+config/name="takos-journey"
 run/main_scene="res://src/splashscreen/SplashScreen.tscn"
 boot_splash/bg_color=Color( 0.101961, 0.101961, 0.101961, 1 )
 config/icon="res://icon.png"
