@@ -13,6 +13,7 @@ onready var anim := $AnimationPlayer
 var gravity := Vector2.DOWN
 var velocity := Vector2.ZERO
 
+
 func _physics_process(delta):
 	var desired_velocity = _get_motion() * speed
 	
@@ -21,9 +22,10 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity)
 	
-	if velocity.length() > 0.01:
+	if desired_velocity:
 		sprite.scale.x = -1 if desired_velocity.x < 0 else 1
-		
+	
+	if velocity:
 		if velocity.y > 0.01:
 			anim.play("Fall")
 		elif velocity.y < -0.01:
@@ -32,6 +34,7 @@ func _physics_process(delta):
 			anim.play("Run")
 	else:
 		anim.play("Idle")
+
 
 func _get_motion():
 	return Vector2(input.get_action_strength("move_right") - input.get_action_strength("move_left"), 0)
