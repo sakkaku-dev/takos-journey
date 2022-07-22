@@ -20,7 +20,7 @@ func _physics_process(delta):
 	velocity = velocity.move_toward(desired_velocity, acceleration * delta)
 	velocity += gravity * gravity_force * delta
 	
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	if desired_velocity:
 		sprite.scale.x = -1 if desired_velocity.x < 0 else 1
@@ -41,5 +41,5 @@ func _get_motion():
 
 
 func _on_PlayerInput_just_pressed(action):
-	if action == "jump":
+	if action == "jump" and is_on_floor():
 		velocity += Vector2.UP * jump_force
