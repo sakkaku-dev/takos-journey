@@ -10,7 +10,7 @@ for ASSET in $(find ./assets/ -type f -name '*.ase'); do
 
     echo "Generating sprites for $ASSET"
 
-    LAYERS=$(aseprite -b --list-layers $ASSET)
+    LAYERS=$(aseprite -b --list-layers --all-layers $ASSET)
     DIR=$(dirname $ASSET)
 
     for LAYER in ${LAYERS[@]}; do
@@ -20,6 +20,6 @@ for ASSET in $(find ./assets/ -type f -name '*.ase'); do
             continue
         fi
 
-        aseprite -b --layer $LAYER --sheet "$DIR/$LAYER.png" --trim-sprite $ASSET | jq '.meta.image'
+        aseprite -b --layer $LAYER --sheet "$DIR/$LAYER.png" --trim-by-grid --ignore-empty $ASSET | jq '.meta.image'
     done
 done
