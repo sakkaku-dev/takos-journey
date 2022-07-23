@@ -89,6 +89,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://shared/input/PlayerInput.gd"
 }, {
+"base": "Object",
+"class": "SceneManagerConstants",
+"language": "GDScript",
+"path": "res://addons/scene_manager/SceneManagerConstants.gd"
+}, {
 "base": "Area2D",
 "class": "SoftCollision",
 "language": "GDScript",
@@ -136,6 +141,7 @@ _global_script_class_icons={
 "OptParse": "",
 "Options": "",
 "PlayerInput": "",
+"SceneManagerConstants": "",
 "SoftCollision": "",
 "Stylesheet": "",
 "ThemeApplier": "",
@@ -151,6 +157,10 @@ run/main_scene="res://src/Game.tscn"
 boot_splash/bg_color=Color( 0.101961, 0.101961, 0.101961, 1 )
 config/icon="res://icon.png"
 
+[autoload]
+
+SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+
 [display]
 
 window/size/width=1920
@@ -160,7 +170,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray(  )
+enabled=PoolStringArray( "res://addons/scene_manager/plugin.cfg" )
 
 [gui]
 
