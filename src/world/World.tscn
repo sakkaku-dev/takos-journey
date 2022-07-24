@@ -1,12 +1,12 @@
 [gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://assets/Tileset.png" type="Texture" id=1]
+[ext_resource path="res://assets/map/Tileset.png" type="Texture" id=1]
 [ext_resource path="res://src/world/Shrine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/world/Lantern.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/world/Gate.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/BGTrees.png" type="Texture" id=5]
-[ext_resource path="res://assets/BGTreesBack.png" type="Texture" id=6]
-[ext_resource path="res://assets/BGStoneHills.png" type="Texture" id=7]
+[ext_resource path="res://assets/background/BGTrees.png" type="Texture" id=5]
+[ext_resource path="res://assets/background/BGTreesBack.png" type="Texture" id=6]
+[ext_resource path="res://assets/background/BGStoneHills.png" type="Texture" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 16, 0, 16, 0, 16, 16, 16, 16 )
