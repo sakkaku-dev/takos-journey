@@ -236,5 +236,5 @@ locale_filter=[ 0, [  ] ]
 
 [rendering]
 
-environment/default_clear_color=Color( 0.101961, 0.101961, 0.101961, 1 )
+environment/default_clear_color=Color( 0.0588235, 0.0862745, 0.109804, 1 )
 environment/default_environment="res://default_env.tres"
