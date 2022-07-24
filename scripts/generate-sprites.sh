@@ -20,6 +20,7 @@ for ASSET in $(find ./assets/ -type f -name '*.ase'); do
             continue
         fi
 
-        aseprite -b --layer $LAYER --sheet "$DIR/$LAYER.png" --trim-by-grid --ignore-empty $ASSET | jq '.meta.image'
+        echo "Exporting layer \"$LAYER\""
+        aseprite -b --layer "$LAYER" --sheet "$DIR/$LAYER.png" --trim-by-grid --ignore-empty $ASSET | jq '.meta.image'
     done
 done
