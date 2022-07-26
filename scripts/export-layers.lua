@@ -17,17 +17,18 @@ local function makesAllLayersVisible(layers, visible)
     end
 end
 
-local function exportLayer(layer, output)
+local function exportLayer(layer, output, col)
     app.command.ExportSpriteSheet {
         type = SpriteSheetType.ROWS,
         textureFilename = output,
         layer = layer.name,
         trim = true, -- TODO: trimByGrid doesn't seem to work the same as CLI
         ignoreEmpty = true,
+        columns = col,
     }
 end
 
-local function exportGroupLayer(layer, output)
+local function exportGroupLayer(layer, output, col)
     layer.isVisible = true
     makesAllLayersVisible(layer.layers, true)
 
@@ -36,26 +37,25 @@ local function exportGroupLayer(layer, output)
         textureFilename = output,
         trimByGrid = true,
         ignoreEmpty = true,
+        columns = col,
     }
 
     layer.isVisible = false
     makesAllLayersVisible(layer.layers, false) 
 end
 
-local function tryExportLayers(layers, dir)
+local function tryExportLayers(layers, dir, col)
     for _, layer in ipairs(layers) do
         if not layer.name:startswith('_') then
-            print('Exporting layer ' .. layer.name)
-
             local output = dir .. '/' .. layer.name .. '.png'
             if layer.layers then
                 if layer.name:startswith('>') then
-                    tryExportLayers(layer.layers, dir)
+                    tryExportLayers(layer.layers, dir, col)
                 else
-                    exportGroupLayer(layer, output)
+                    exportGroupLayer(layer, output, col)
                 end
             else
-                exportLayer(layer, output)
+                exportLayer(layer, output, col)
             end
         end
     end
@@ -64,11 +64,12 @@ end
 
 local file = app.params['file']
 local dir = app.params['dir']
+local col = app.params['col']
 
 if file and dir then
     local full_path = dir .. '/' .. file
     local sprite = app.open(full_path)
 
     makesAllLayersVisible(sprite.layers, false)
-    tryExportLayers(sprite.layers, dir)
+    tryExportLayers(sprite.layers, dir, col)
 end
