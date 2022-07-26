@@ -42,7 +42,7 @@ local function exportGroupLayer(layer, output)
     makesAllLayersVisible(layer.layers, false) 
 end
 
-local function tryExportLayers(layers)
+local function tryExportLayers(layers, dir)
     for _, layer in ipairs(layers) do
         if not layer.name:startswith('_') then
             print('Exporting layer ' .. layer.name)
@@ -50,7 +50,7 @@ local function tryExportLayers(layers)
             local output = dir .. '/' .. layer.name .. '.png'
             if layer.layers then
                 if layer.name:startswith('>') then
-                    tryExportLayers(layer.layers)
+                    tryExportLayers(layer.layers, dir)
                 else
                     exportGroupLayer(layer, output)
                 end
@@ -70,5 +70,5 @@ if file and dir then
     local sprite = app.open(full_path)
 
     makesAllLayersVisible(sprite.layers, false)
-    tryExportLayers(sprite.layers)
+    tryExportLayers(sprite.layers, dir)
 end
