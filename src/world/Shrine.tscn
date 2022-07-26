@@ -24,11 +24,11 @@ polygon = PoolVector2Array( 96, -25, -96, -25, -96, 40, -91, 40, -91, -20, 91, -
 [node name="Shrine" type="Node2D"]
 
 [node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 0, 24 )
+position = Vector2( 0, 26 )
 texture = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, 24 )
+position = Vector2( 0, 25 )
 z_index = 1
 texture = ExtResource( 1 )
 
