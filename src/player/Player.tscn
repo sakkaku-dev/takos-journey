@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://assets/characters/Ina.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -147,6 +147,18 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=6]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 3, 1 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Run"
@@ -214,6 +226,23 @@ tracks/0/keys = {
 "values": [ Vector2( 12, 0 ) ]
 }
 
+[sub_resource type="Animation" id=56]
+resource_name = "WallSlide"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 2, 1 ), Vector2( 3, 1 ) ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
@@ -257,6 +286,7 @@ position = Vector2( 0, -2 )
 texture = ExtResource( 1 )
 hframes = 15
 vframes = 2
+frame = 18
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 4 )
@@ -270,14 +300,13 @@ volume_db = -20.0
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 35 )
 anim_player = NodePath("AnimationPlayer")
-active = true
 parameters/playback = SubResource( 11 )
 parameters/conditions/falling = false
 parameters/conditions/grounded = true
 parameters/conditions/rising = false
 parameters/grounded/playback = SubResource( 44 )
-parameters/grounded/conditions/moving = false
-parameters/grounded/conditions/not_moving = true
+parameters/grounded/conditions/moving = true
+parameters/grounded/conditions/not_moving = false
 parameters/grounded/conditions/not_sliding = false
 parameters/grounded/conditions/sliding = false
 script = ExtResource( 8 )
@@ -292,6 +321,7 @@ anims/Run = SubResource( 5 )
 anims/SlideEnd = SubResource( 8 )
 anims/SlideLoop = SubResource( 16 )
 anims/SlideStart = SubResource( 15 )
+anims/WallSlide = SubResource( 56 )
 
 [connection signal="just_pressed" from="PlayerInput" to="." method="_on_PlayerInput_just_pressed"]
 [connection signal="just_released" from="PlayerInput" to="." method="_on_PlayerInput_just_released"]
