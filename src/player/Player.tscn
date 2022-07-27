@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/characters/Ina.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://assets/sounds/player-land.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sounds/player-jump.wav" type="AudioStream" id=7]
 [ext_resource path="res://src/player/PlayerAnimation.gd" type="Script" id=8]
+[ext_resource path="res://src/player/Jump.gd" type="Script" id=9]
+[ext_resource path="res://src/player/Slide.gd" type="Script" id=10]
+[ext_resource path="res://src/player/Move.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 11 )
@@ -213,12 +216,32 @@ tracks/0/keys = {
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
-acceleration = 2000
-speed = 100
-slide_deacceleration = 1200
 
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource( 3 )
+
+[node name="States" type="Node" parent="."]
+
+[node name="Jump" type="Node" parent="States"]
+script = ExtResource( 9 )
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="States/Jump"]
+stream = ExtResource( 7 )
+volume_db = -5.0
+
+[node name="Slide" type="Node" parent="States"]
+script = ExtResource( 10 )
+slide_force = 3
+slide_deacceleration = 500
+
+[node name="Move" type="Node" parent="States"]
+script = ExtResource( 11 )
+acceleration = 2000
+speed = 100
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="States/Move"]
+stream = ExtResource( 5 )
+pitch_scale = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1 )
@@ -229,6 +252,7 @@ position = Vector2( 0, -2 )
 texture = ExtResource( 1 )
 hframes = 15
 vframes = 2
+frame = 1
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 4 )
@@ -238,14 +262,6 @@ energy = 0.3
 [node name="LandSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -20.0
-
-[node name="JumpSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-volume_db = -5.0
-
-[node name="WalkSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-pitch_scale = 1.5
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 35 )
