@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://assets/characters/Ina.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -7,9 +7,88 @@
 [ext_resource path="res://assets/sounds/walk.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sounds/player-land.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sounds/player-jump.wav" type="AudioStream" id=7]
+[ext_resource path="res://src/player/PlayerAnimation.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 11 )
+
+[sub_resource type="AnimationNodeAnimation" id=47]
+animation = "Fall"
+
+[sub_resource type="AnimationNodeAnimation" id=49]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "Run"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "SlideEnd"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "SlideLoop"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "SlideStart"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+advance_condition = "moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+advance_condition = "not_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+advance_condition = "sliding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+advance_condition = "not_sliding"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=34]
+states/Idle/node = SubResource( 23 )
+states/Idle/position = Vector2( 543, 357 )
+states/Run/node = SubResource( 24 )
+states/Run/position = Vector2( 477, 239 )
+states/SlideEnd/node = SubResource( 25 )
+states/SlideEnd/position = Vector2( 850, 357 )
+states/SlideLoop/node = SubResource( 26 )
+states/SlideLoop/position = Vector2( 945, 239 )
+states/SlideStart/node = SubResource( 27 )
+states/SlideStart/position = Vector2( 758, 239 )
+transitions = [ "Idle", "Run", SubResource( 28 ), "Run", "Idle", SubResource( 29 ), "Run", "SlideStart", SubResource( 30 ), "SlideStart", "SlideLoop", SubResource( 31 ), "SlideLoop", "SlideEnd", SubResource( 32 ), "SlideEnd", "Idle", SubResource( 33 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
+advance_condition = "falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+advance_condition = "rising"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+advance_condition = "grounded"
+
+[sub_resource type="AnimationNodeStateMachine" id=35]
+states/Fall/node = SubResource( 47 )
+states/Fall/position = Vector2( 531, 188 )
+states/Jump/node = SubResource( 49 )
+states/Jump/position = Vector2( 531, 353 )
+states/grounded/node = SubResource( 34 )
+states/grounded/position = Vector2( 297, 285 )
+transitions = [ "Jump", "Fall", SubResource( 53 ), "grounded", "Jump", SubResource( 54 ), "Fall", "grounded", SubResource( 55 ) ]
+start_node = "grounded"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=44]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fall"
@@ -64,18 +143,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=6]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 4, 0 ) ]
-}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Run"
@@ -95,8 +162,8 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=8]
-resource_name = "Slide"
-length = 0.5
+resource_name = "SlideEnd"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame_coords")
 tracks/0/interp = 1
@@ -104,10 +171,43 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 12, 0 ), Vector2( 13, 0 ), Vector2( 14, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "SlideLoop"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 13, 0 ), Vector2( 14, 0 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "SlideStart"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 12, 0 ) ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -128,26 +228,11 @@ position = Vector2( 0, -2 )
 texture = ExtResource( 1 )
 hframes = 15
 vframes = 2
-frame = 4
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Idle"
-anims/Fall = SubResource( 1 )
-anims/Idle = SubResource( 2 )
-anims/Jump = SubResource( 3 )
-anims/RESET = SubResource( 6 )
-anims/Run = SubResource( 5 )
-anims/Slide = SubResource( 8 )
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 4 )
 texture_scale = 0.3
 energy = 0.3
-
-[node name="WalkSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
-volume_db = 2.0
-pitch_scale = 1.5
 
 [node name="LandSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
@@ -156,6 +241,36 @@ volume_db = -20.0
 [node name="JumpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -5.0
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+pitch_scale = 1.5
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 35 )
+anim_player = NodePath("AnimationPlayer")
+active = true
+parameters/playback = SubResource( 11 )
+parameters/conditions/falling = false
+parameters/conditions/grounded = true
+parameters/conditions/rising = false
+parameters/grounded/playback = SubResource( 44 )
+parameters/grounded/conditions/moving = false
+parameters/grounded/conditions/not_moving = true
+parameters/grounded/conditions/not_sliding = false
+parameters/grounded/conditions/sliding = false
+script = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+root_node = NodePath("../..")
+anims/Fall = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/Jump = SubResource( 3 )
+anims/RESET = SubResource( 6 )
+anims/Run = SubResource( 5 )
+anims/SlideEnd = SubResource( 8 )
+anims/SlideLoop = SubResource( 16 )
+anims/SlideStart = SubResource( 15 )
 
 [connection signal="just_pressed" from="PlayerInput" to="." method="_on_PlayerInput_just_pressed"]
 [connection signal="just_released" from="PlayerInput" to="." method="_on_PlayerInput_just_released"]

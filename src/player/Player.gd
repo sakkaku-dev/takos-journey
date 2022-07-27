@@ -1,4 +1,4 @@
-extends KinematicBody2D
+class_name Player extends KinematicBody2D
 
 export var acceleration := 800
 export var speed := 200
@@ -8,7 +8,7 @@ export var initial_gravity_force := 9.8
 
 onready var input := $PlayerInput
 onready var sprite := $Sprite
-onready var anim := $AnimationPlayer
+onready var anim_tree := $AnimationTree
 
 onready var walk_sound := $WalkSound
 onready var land_sound := $LandSound
@@ -26,31 +26,26 @@ func _physics_process(delta):
 	
 	if motion_x:
 		sprite.scale.x = -1 if motion_x < 0 else 1
+		
+	anim_tree.update_animation(self)
 	
-	if not was_grounded and is_on_floor():
-		land_sound.play()
-	
-	if velocity:
-		if is_on_floor():
-			anim.play("Run")
+	# TODO: make better
+	if is_on_floor():
+		if velocity:
 			if not walk_sound.playing:
 				walk_sound.play()
 		else:
 			walk_sound.stop()
-			if velocity.y > 0.01:
-				anim.play("Fall")
-			elif velocity.y < -0.01:
-				anim.play("Jump")
+		if not was_grounded:
+			land_sound.play()
 	else:
-		anim.play("Idle")
 		walk_sound.stop()
 
 
 func _on_PlayerInput_just_pressed(action):
-	if action == "jump" and is_on_floor():
+	if action == "jump":
 		velocity.y = -jump_force
 		jump_sound.play()
-
 
 func _on_PlayerInput_just_released(action):
 	if action == "jump":
