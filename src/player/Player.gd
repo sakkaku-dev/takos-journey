@@ -8,7 +8,7 @@ enum {
 export var initial_gravity_force := 9.8
 
 onready var input := $PlayerInput
-onready var sprite := $Sprite
+onready var sprite := $Sprites
 onready var anim_tree := $AnimationTree
 
 onready var land_sound := $LandSound
