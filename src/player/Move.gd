@@ -18,3 +18,6 @@ func process(delta: float):
 			walk_sound.play()
 	else:
 		walk_sound.stop()
+
+func exit():
+	walk_sound.stop()

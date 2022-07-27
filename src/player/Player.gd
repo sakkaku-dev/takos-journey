@@ -18,7 +18,11 @@ onready var slide := $States/Slide
 onready var move := $States/Move
 
 var velocity := Vector2.ZERO
-var state = MOVE
+var state = MOVE setget _set_state
+
+func _set_state(s):
+	state = s
+	move.exit()
 
 func _process(_delta):
 	anim_tree.update_animation(self)
