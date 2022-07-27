@@ -215,6 +215,7 @@ collision_layer = 2
 script = ExtResource( 2 )
 acceleration = 2000
 speed = 100
+slide_deacceleration = 1200
 
 [node name="PlayerInput" type="Node" parent="."]
 script = ExtResource( 3 )
