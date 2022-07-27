@@ -22,7 +22,6 @@ var state = MOVE setget _set_state
 
 func _set_state(s):
 	state = s
-	move.exit()
 
 func _process(_delta):
 	anim_tree.update_animation(self)
@@ -47,10 +46,13 @@ func _update_sound(was_grounded: bool):
 
 
 func _on_PlayerInput_just_pressed(action):
-	if action == "jump":
-		jump.enter()
-	elif action == "slide":
-		slide.enter()
+	if is_on_floor():
+		if action == "jump":
+			move.exit()
+			jump.enter()
+		elif action == "slide":
+			move.exit()
+			slide.enter()
 
 
 func _on_PlayerInput_just_released(action):

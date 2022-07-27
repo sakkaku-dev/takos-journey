@@ -2,13 +2,13 @@ extends Node
 
 export var slide_force := 5
 export var slide_deacceleration := 800
-export var slide_threshold := 10
+export var slide_threshold := 0.1
 
 onready var slide_sound := $SlideSound
 onready var player: Player = owner
 
 func enter():
-	if player.state == Player.SLIDE:
+	if player.state == Player.SLIDE or not player.velocity.x:
 		return
 	
 	player.state = Player.SLIDE
