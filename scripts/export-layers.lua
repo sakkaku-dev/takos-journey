@@ -22,7 +22,8 @@ local function exportLayer(layer, output, col)
         type = SpriteSheetType.ROWS,
         textureFilename = output,
         layer = layer.name,
-        trim = true, -- TODO: trimByGrid doesn't seem to work the same as CLI
+        trimSprite = true,
+        trimByGrid = true,
         ignoreEmpty = true,
         columns = col,
     }
@@ -35,6 +36,7 @@ local function exportGroupLayer(layer, output, col)
     app.command.ExportSpriteSheet {
         type = SpriteSheetType.ROWS,
         textureFilename = output,
+        trimSprite = true,
         trimByGrid = true,
         ignoreEmpty = true,
         columns = col,
