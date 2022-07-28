@@ -5,8 +5,6 @@ enum {
 	SLIDE,
 }
 
-export var initial_gravity_force := 9.8
-
 onready var input := $PlayerInput
 onready var sprite := $Sprites
 onready var anim_tree := $AnimationTree
@@ -19,6 +17,8 @@ onready var move := $States/Move
 
 var velocity := Vector2.ZERO
 var state = MOVE setget _set_state
+
+onready var gravity = ProjectSettings.get("physics/2d/default_gravity_vector") * ProjectSettings.get("physics/2d/default_gravity")
 
 func _set_state(s):
 	state = s
@@ -34,7 +34,7 @@ func _physics_process(delta):
 		MOVE: move.process(delta)
 		SLIDE: slide.process(delta)
 	
-	velocity += Vector2.DOWN * initial_gravity_force
+	velocity += gravity
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	_update_sound(was_grounded)

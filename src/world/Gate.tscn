@@ -9,7 +9,7 @@ extents = Vector2( 6, 4 )
 polygon = PoolVector2Array( -2, -24, -6, -19, 7, -19, 3, -24 )
 
 [node name="Gate" type="Node2D"]
-z_index = 1
+z_index = 5
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
