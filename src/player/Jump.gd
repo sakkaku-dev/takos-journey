@@ -1,4 +1,4 @@
-extends Node
+extends State
 
 export var jump_force := 300
 

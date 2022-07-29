@@ -6,6 +6,7 @@ enum {
 	WALL_SLIDE,
 	WALL_JUMP,
 	JUMP,
+	DASH,
 }
 
 onready var input := $PlayerInput
@@ -19,6 +20,7 @@ onready var slide := $States/Slide
 onready var move := $States/Move
 onready var wall_slide := $States/WallSlide
 onready var wall_jump := $States/WallJump
+onready var dash := $States/Dash
 
 onready var left_wall_cast := $WallCast/LeftWall
 onready var right_wall_cast := $WallCast/RightWall
@@ -28,15 +30,17 @@ var logger = Logger.new("Player")
 var face_dir := Vector2.RIGHT
 var velocity := Vector2.ZERO
 var state := MOVE setget _set_state
+var tentacle_mode := false
+var dash_count = 0
 
 func _set_state(s):
 	if state == s:
 		return
 	
-	logger.debug("Changing to state %s" % _get_state_node(s))
-	_run_method_if_exist(_get_state_node(state), "exit")
+	_current_state().exit()
 	state = s
-	_run_method_if_exist(_get_state_node(state), "enter")
+	_current_state().enter()
+	logger.debug("Changed to state %s" % _current_state())
 
 func _get_state_node(s):
 	match s:
@@ -45,11 +49,10 @@ func _get_state_node(s):
 		WALL_SLIDE: return wall_slide
 		WALL_JUMP: return wall_jump
 		JUMP: return jump
+		DASH: return dash
 
-func _run_method_if_exist(node: Node, method, params = []):
-	if node.has_method(method):
-		node.callv(method, params)
-
+func _current_state() -> State:
+	return _get_state_node(state)
 
 func _process(_delta):
 	anim_tree.update_animation(self)
@@ -57,18 +60,21 @@ func _process(_delta):
 func _physics_process(delta):
 	var was_grounded = is_on_floor()
 	
-	_run_method_if_exist(_get_state_node(state), "process", [delta])
+	_current_state().process(delta)
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-	if not was_grounded and is_on_floor():
-		land_sound.play()
+	if is_on_floor():
+		dash_count = 0
+		if not was_grounded:
+			land_sound.play()
+	
 
 
 func _on_PlayerInput_just_pressed(action):
-	_run_method_if_exist(_get_state_node(state), "just_pressed", [action])
+	_current_state().just_pressed(action)
 
 func _on_PlayerInput_just_released(action):
-	_run_method_if_exist(_get_state_node(state), "just_released", [action])
+	_current_state().just_released(action)
 
 
 func get_motion():

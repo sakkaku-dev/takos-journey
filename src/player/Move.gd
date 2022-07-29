@@ -1,4 +1,4 @@
-extends Node
+extends State
 
 export var acceleration := 800
 export var speed := 200
@@ -30,8 +30,12 @@ func exit():
 	walk_sound.stop()
 
 func just_pressed(action: String):
-	if player.is_on_floor() and action == "slide":
-		player.state = Player.SLIDE
+	if action == "slide":
+		if not player.tentacle_mode:
+			if player.is_on_floor():
+				player.state = Player.SLIDE
+		else:
+			player.state = Player.DASH
 		
 		
 	if action == "jump":
@@ -39,6 +43,9 @@ func just_pressed(action: String):
 			player.state = Player.JUMP
 		elif player.get_wall_collision():
 			player.state = Player.WALL_JUMP
+			
+	if action == "switch_mode":
+		player.tentacle_mode = !player.tentacle_mode
 
 func just_released(action: String):
 	if action == "jump":
