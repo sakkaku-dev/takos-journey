@@ -8,10 +8,9 @@ onready var slide_sound := $SlideSound
 onready var player: Player = owner
 
 func enter():
-	if player.state == Player.SLIDE or not player.velocity.x:
+	if not player.velocity.x:
 		return
 	
-	player.state = Player.SLIDE
 	player.velocity.x *= slide_force
 	slide_sound.play()
 

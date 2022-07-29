@@ -12,6 +12,11 @@ const NOT_MOVING = "parameters/grounded/conditions/not_moving"
 const SLIDING = "parameters/grounded/conditions/sliding"
 const NOT_SLIDING = "parameters/grounded/conditions/not_sliding"
 
+const WALL_SLIDING = "parameters/conditions/sliding"
+const NOT_WALL_SLIDING = "parameters/conditions/not_sliding"
+
+func _ready():
+	active = true
 
 func update_animation(player: Player):
 	set(GROUNDED, player.is_on_floor())
@@ -24,3 +29,6 @@ func update_animation(player: Player):
 
 	set(SLIDING, player.state == Player.SLIDE)
 	set(NOT_SLIDING, not get(SLIDING))
+	
+	set(WALL_SLIDING, player.state == Player.WALL_SLIDE)
+	set(NOT_WALL_SLIDING, not get(WALL_SLIDING))

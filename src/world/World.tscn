@@ -279,7 +279,7 @@ position = Vector2( -260, 0 )
 shape = SubResource( 15 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
 
 [node name="ParallaxBack" type="ParallaxBackground" parent="."]
 
