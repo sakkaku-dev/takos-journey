@@ -358,7 +358,6 @@ input_path = NodePath("PlayerInput")
 
 [node name="PlayerInput" type="Node" parent="DeviceSwitcher"]
 script = ExtResource( 3 )
-joypad = true
 
 [node name="States" type="Node" parent="."]
 
