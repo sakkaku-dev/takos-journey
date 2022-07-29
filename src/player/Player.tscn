@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://assets/characters/Ina.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://src/player/WallJump.gd" type="Script" id=16]
 [ext_resource path="res://assets/sounds/wall-slide.wav" type="AudioStream" id=17]
 [ext_resource path="res://src/player/Dash.gd" type="Script" id=18]
+[ext_resource path="res://shared/input/DeviceSwitcher.gd" type="Script" id=19]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 11 )
@@ -351,8 +352,13 @@ cast_to = Vector2( 10, 0 )
 enabled = true
 cast_to = Vector2( -10, 0 )
 
-[node name="PlayerInput" type="Node" parent="."]
+[node name="DeviceSwitcher" type="Node" parent="."]
+script = ExtResource( 19 )
+input_path = NodePath("PlayerInput")
+
+[node name="PlayerInput" type="Node" parent="DeviceSwitcher"]
 script = ExtResource( 3 )
+joypad = true
 
 [node name="States" type="Node" parent="."]
 
@@ -463,5 +469,5 @@ anims/SlideLoop = SubResource( 16 )
 anims/SlideStart = SubResource( 15 )
 anims/WallSlide = SubResource( 56 )
 
-[connection signal="just_pressed" from="PlayerInput" to="." method="_on_PlayerInput_just_pressed"]
-[connection signal="just_released" from="PlayerInput" to="." method="_on_PlayerInput_just_released"]
+[connection signal="just_pressed" from="DeviceSwitcher/PlayerInput" to="." method="_on_PlayerInput_just_pressed"]
+[connection signal="just_released" from="DeviceSwitcher/PlayerInput" to="." method="_on_PlayerInput_just_released"]

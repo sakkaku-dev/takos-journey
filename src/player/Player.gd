@@ -9,7 +9,7 @@ enum {
 	DASH,
 }
 
-onready var input := $PlayerInput
+onready var input := $DeviceSwitcher/PlayerInput
 onready var sprite := $Sprites
 onready var anim_tree := $AnimationTree
 
