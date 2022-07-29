@@ -14,3 +14,6 @@ func just_pressed(action: String):
 	
 func just_released(action: String):
 	pass
+
+func can_enter() -> bool:
+	return true

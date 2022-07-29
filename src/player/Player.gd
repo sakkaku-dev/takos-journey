@@ -34,7 +34,7 @@ var tentacle_mode := false
 var dash_count = 0
 
 func _set_state(s):
-	if state == s:
+	if state == s or not _get_state_node(s).can_enter():
 		return
 	
 	_current_state().exit()
