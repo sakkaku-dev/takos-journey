@@ -3,7 +3,11 @@ extends State
 export var acceleration := 800
 export var speed := 200
 
+export var run_particles_path: NodePath
+onready var run_particle := get_node(run_particles_path)
+
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity_vector") * ProjectSettings.get("physics/2d/default_gravity")
+
 
 onready var walk_sound := $WalkSound
 onready var player: Player = owner
@@ -12,9 +16,10 @@ func process(delta: float):
 	if player.is_on_floor() and player.velocity:
 		if not walk_sound.playing:
 			walk_sound.play()
+		run_particle.start()
 	else:
 		walk_sound.stop()
-	
+		
 	var motion_x = player.get_motion()
 	player.velocity.x = move_toward(player.velocity.x, motion_x * speed, acceleration * delta)
 	

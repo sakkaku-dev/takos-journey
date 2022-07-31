@@ -35,7 +35,7 @@ func process(delta):
 	var moved_away_from_wall = leave_motion >= leave_slide_threshold
 	if player.is_on_floor() or not player.get_wall_collision() or moved_away_from_wall:
 		player.state = Player.MOVE
-		
+
 
 func just_pressed(action: String):
 	if action == "jump":

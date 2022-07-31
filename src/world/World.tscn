@@ -279,7 +279,7 @@ position = Vector2( -260, 0 )
 shape = SubResource( 15 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.12549, 0.12549, 0.12549, 1 )
+color = Color( 0.356863, 0.356863, 0.356863, 1 )
 
 [node name="ParallaxBack" type="ParallaxBackground" parent="."]
 
@@ -313,6 +313,7 @@ texture = ExtResource( 7 )
 layer = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="ParallaxFront"]
+visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="FrontTree" type="ParallaxLayer" parent="ParallaxFront"]

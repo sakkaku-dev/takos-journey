@@ -13,14 +13,13 @@ onready var input := $DeviceSwitcher/PlayerInput
 onready var sprite := $Sprites
 onready var anim_tree := $AnimationTree
 
-onready var land_sound := $LandSound
-
 onready var jump := $States/Jump
 onready var slide := $States/Slide
 onready var move := $States/Move
 onready var wall_slide := $States/WallSlide
 onready var wall_jump := $States/WallJump
 onready var dash := $States/Dash
+onready var land := $States/Land
 
 onready var left_wall_cast := $WallCast/LeftWall
 onready var right_wall_cast := $WallCast/RightWall
@@ -66,8 +65,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		dash_count = 0
 		if not was_grounded:
-			land_sound.play()
-	
+			land.enter()
 
 
 func _on_PlayerInput_just_pressed(action):

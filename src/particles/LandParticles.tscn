@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/particles/OneShotParticles.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=62]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -5.26909, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=63]
+curve = SubResource( 62 )
+
+[sub_resource type="ParticlesMaterial" id=61]
+emission_shape = 2
+emission_box_extents = Vector3( 5, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+angular_velocity = -100.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 10.0
+scale_curve = SubResource( 63 )
+color = Color( 0.603922, 0.627451, 0.639216, 1 )
+
+[node name="LandParticles" type="Particles2D"]
+position = Vector2( 0, 15 )
+z_index = 2
+amount = 20
+speed_scale = 2.0
+explosiveness = 0.7
+process_material = SubResource( 61 )
+script = ExtResource( 1 )
