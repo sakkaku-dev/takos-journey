@@ -19,8 +19,9 @@ func process(delta: float):
 	if abs(player.velocity.x) <= slide_threshold:
 		player.state = Player.MOVE
 	
-	particles.start()
+	particles.emitting = true
 	player.velocity.x = move_toward(player.velocity.x, 0, slide_deacceleration * delta)
 
 func exit():
 	slide_sound.stop()
+	particles.emitting = false

@@ -16,9 +16,10 @@ func process(delta: float):
 	if player.is_on_floor() and player.velocity:
 		if not walk_sound.playing:
 			walk_sound.play()
-		run_particle.start()
+		run_particle.emitting = true
 	else:
 		walk_sound.stop()
+		run_particle.emitting = false
 		
 	var motion_x = player.get_motion()
 	player.velocity.x = move_toward(player.velocity.x, motion_x * speed, acceleration * delta)
@@ -33,6 +34,7 @@ func process(delta: float):
 
 func exit():
 	walk_sound.stop()
+	run_particle.emitting = false
 
 func just_pressed(action: String):
 	if action == "slide":

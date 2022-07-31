@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=2]
-
-[ext_resource path="res://src/particles/OneShotParticles.gd" type="Script" id=1]
+[gd_scene load_steps=6 format=2]
 
 [sub_resource type="Gradient" id=64]
 colors = PoolColorArray( 0.603922, 0.627451, 0.639216, 0.835294, 0.603922, 0.627451, 0.639216, 0 )
@@ -34,8 +32,8 @@ color = Color( 0.603922, 0.627451, 0.639216, 1 )
 color_ramp = SubResource( 65 )
 
 [node name="SlideParticles" type="Particles2D"]
+emitting = false
 lifetime = 0.3
 speed_scale = 3.0
 explosiveness = 0.8
 process_material = SubResource( 66 )
-script = ExtResource( 1 )

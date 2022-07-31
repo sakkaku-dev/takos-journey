@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://assets/characters/Ina.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -21,7 +21,6 @@
 [ext_resource path="res://shared/input/DeviceSwitcher.gd" type="Script" id=19]
 [ext_resource path="res://src/player/Land.gd" type="Script" id=20]
 [ext_resource path="res://src/particles/LandParticles.tscn" type="PackedScene" id=21]
-[ext_resource path="res://src/particles/ParticleSpawner.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/particles/RunParticles.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/particles/SlideParticles.tscn" type="PackedScene" id=24]
 
@@ -368,7 +367,7 @@ script = ExtResource( 3 )
 
 [node name="Jump" type="Node" parent="States"]
 script = ExtResource( 9 )
-particles_path = NodePath("../../Sprites/JumpParticles")
+particles_path = NodePath("../../Sprites/LandParticles")
 
 [node name="JumpSound" type="AudioStreamPlayer" parent="States/Jump"]
 stream = ExtResource( 7 )
@@ -422,7 +421,7 @@ script = ExtResource( 18 )
 
 [node name="Land" type="Node" parent="States"]
 script = ExtResource( 20 )
-land_particles = ExtResource( 21 )
+particles_path = NodePath("../../Sprites/LandParticles")
 
 [node name="LandSound" type="AudioStreamPlayer" parent="States/Land"]
 stream = ExtResource( 6 )
@@ -435,22 +434,21 @@ shape = SubResource( 7 )
 [node name="Sprites" type="Node2D" parent="."]
 script = ExtResource( 14 )
 
-[node name="JumpParticles" parent="Sprites" instance=ExtResource( 22 )]
-position = Vector2( 0, 13 )
-particles = ExtResource( 21 )
+[node name="LandParticles" parent="Sprites" instance=ExtResource( 21 )]
+local_coords = false
 
-[node name="WallJumpParticles" parent="Sprites" instance=ExtResource( 22 )]
+[node name="WallJumpParticles" parent="Sprites" instance=ExtResource( 21 )]
 position = Vector2( -8, 5 )
 rotation = 1.5708
-particles = ExtResource( 21 )
+local_coords = false
 
-[node name="SlideParticles" parent="Sprites" instance=ExtResource( 22 )]
-position = Vector2( 2, 13 )
-particles = ExtResource( 24 )
+[node name="RunParticles" parent="Sprites" instance=ExtResource( 23 )]
+position = Vector2( 0, 14 )
+local_coords = false
 
-[node name="RunParticles" parent="Sprites" instance=ExtResource( 22 )]
-position = Vector2( 2, 13 )
-particles = ExtResource( 23 )
+[node name="SlideParticles" parent="Sprites" instance=ExtResource( 24 )]
+position = Vector2( 0, 15 )
+local_coords = false
 
 [node name="Tentacles" type="Sprite" parent="Sprites"]
 visible = false

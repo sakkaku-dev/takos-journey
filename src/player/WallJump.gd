@@ -18,6 +18,6 @@ func enter():
 		player.velocity += dir * jump_force
 		player.face_dir = Vector2(sign(dir.x), 0)
 		jump_sound.play()
-		particles.start()
+		particles.emitting = true
 	
 	player.state = Player.MOVE

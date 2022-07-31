@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=2]
-
-[ext_resource path="res://src/particles/OneShotParticles.gd" type="Script" id=1]
+[gd_scene load_steps=6 format=2]
 
 [sub_resource type="Gradient" id=64]
 offsets = PoolRealArray( 0.347826, 1 )
@@ -35,9 +33,9 @@ color_ramp = SubResource( 65 )
 
 [node name="RunParticles" type="Particles2D"]
 position = Vector2( 0, 11 )
+emitting = false
 amount = 10
 lifetime = 0.3
 speed_scale = 2.0
 explosiveness = 0.5
 process_material = SubResource( 66 )
-script = ExtResource( 1 )
