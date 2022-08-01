@@ -5,6 +5,8 @@ export var dash_speed := 500
 export var dash_threshold := 0.0
 export var max_dash := 1
 
+onready var sound := $DashSound
+
 onready var player: Player = owner
 
 var motion := Vector2.ZERO
@@ -18,6 +20,7 @@ func enter():
 	player.dash_count += 1
 	player.velocity.y = 0
 	to_wall_slide = false
+	sound.play()
 
 func process(delta: float):
 	motion = motion.move_toward(Vector2.ZERO, deacceleration * delta)

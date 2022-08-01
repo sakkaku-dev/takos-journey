@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://assets/characters/Ina.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://shared/input/DeviceSwitcher.gd" type="Script" id=19]
 [ext_resource path="res://src/player/Land.gd" type="Script" id=20]
 [ext_resource path="res://src/particles/LandParticles.tscn" type="PackedScene" id=21]
+[ext_resource path="res://assets/sounds/dash.wav" type="AudioStream" id=22]
 [ext_resource path="res://src/particles/RunParticles.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/particles/SlideParticles.tscn" type="PackedScene" id=24]
 
@@ -555,6 +556,10 @@ volume_db = -5.0
 [node name="Dash" type="Node" parent="States"]
 script = ExtResource( 18 )
 
+[node name="DashSound" type="AudioStreamPlayer" parent="States/Dash"]
+stream = ExtResource( 22 )
+volume_db = 5.0
+
 [node name="Land" type="Node" parent="States"]
 script = ExtResource( 20 )
 particles_path = NodePath("../../Sprites/LandParticles")
@@ -591,12 +596,14 @@ position = Vector2( 1, -2 )
 texture = ExtResource( 13 )
 hframes = 15
 vframes = 2
+frame = 1
 
 [node name="Body" type="Sprite" parent="Sprites"]
 position = Vector2( 0, -2 )
 texture = ExtResource( 1 )
 hframes = 15
 vframes = 2
+frame = 1
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 4 )
