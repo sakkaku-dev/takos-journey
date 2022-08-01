@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://assets/characters/Ina.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://assets/sounds/dash.wav" type="AudioStream" id=22]
 [ext_resource path="res://src/particles/RunParticles.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/particles/SlideParticles.tscn" type="PackedScene" id=24]
+[ext_resource path="res://src/player/ClosedBook.tres" type="SpriteFrames" id=25]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 11 )
@@ -199,6 +200,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( -3, 0 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Book:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, 7 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fall"
@@ -228,10 +241,22 @@ tracks/1/keys = {
 "update": 1,
 "values": [ Vector2( 10, 0 ), Vector2( 11, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Book:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, 7 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
-length = 0.3
+length = 0.8
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Body:frame_coords")
@@ -240,10 +265,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, 0 ), Vector2( 1, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( 1, 0 ), Vector2( 0, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprites/Tentacles:frame_coords")
@@ -252,10 +277,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, 0 ), Vector2( 1, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( 1, 0 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprites/Tentacles:position")
@@ -268,6 +293,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, -2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Book:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 7 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -298,6 +335,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ Vector2( 8, 0 ), Vector2( 9, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Book:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, 7 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -312,6 +361,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, -2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Book:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -353,6 +414,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, -2 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Book:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, 7 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -402,6 +475,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ Vector2( 12, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Book:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, 7 ) ]
 }
 
 [sub_resource type="Animation" id=68]
@@ -475,6 +560,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ Vector2( 2, 1 ), Vector2( 3, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Book:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 7, 7 ) ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -596,14 +693,20 @@ position = Vector2( 1, -2 )
 texture = ExtResource( 13 )
 hframes = 15
 vframes = 2
-frame = 1
+frame = 8
 
 [node name="Body" type="Sprite" parent="Sprites"]
 position = Vector2( 0, -2 )
 texture = ExtResource( 1 )
 hframes = 15
 vframes = 2
-frame = 1
+frame = 17
+
+[node name="Book" type="AnimatedSprite" parent="Sprites"]
+position = Vector2( 7, 7 )
+frames = ExtResource( 25 )
+animation = "close"
+playing = true
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 4 )
@@ -613,7 +716,6 @@ energy = 0.5
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 70 )
 anim_player = NodePath("AnimationPlayer")
-active = true
 parameters/Main/playback = SubResource( 75 )
 parameters/Main/conditions/dash = false
 parameters/Main/conditions/falling = false
@@ -648,3 +750,4 @@ anims/WallSlide = SubResource( 56 )
 
 [connection signal="just_pressed" from="DeviceSwitcher/PlayerInput" to="." method="_on_PlayerInput_just_pressed"]
 [connection signal="just_released" from="DeviceSwitcher/PlayerInput" to="." method="_on_PlayerInput_just_released"]
+[connection signal="visibility_changed" from="Sprites/Tentacles" to="Sprites" method="_on_Tentacles_visibility_changed"]

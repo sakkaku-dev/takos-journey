@@ -1,0 +1,33 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=2]
+
+[ext_resource path="res://assets/characters/ClosedBook.png" type="Texture" id=1]
+[ext_resource path="res://assets/characters/OpenBook.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=102]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=103]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=104]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=105]
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[resource]
+animations = [ {
+"frames": [ SubResource( 102 ), SubResource( 103 ) ],
+"loop": true,
+"name": "close",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 104 ), SubResource( 105 ) ],
+"loop": true,
+"name": "open",
+"speed": 2.0
+} ]
