@@ -62,10 +62,11 @@ func _physics_process(delta):
 	_current_state().process(delta)
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-	if is_on_floor():
-		dash_count = 0
-		if not was_grounded:
-			land.enter()
+	if is_on_floor() or state == WALL_SLIDE:
+		reset_dash()
+		
+	if is_on_floor() and not was_grounded:
+		land.enter()
 
 
 func _on_PlayerInput_just_pressed(action):
@@ -87,3 +88,6 @@ func get_wall_collision():
 
 func is_moving_against_wall():
 	return is_on_wall() and get_wall_collision()
+
+func reset_dash():
+	dash_count = 0

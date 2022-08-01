@@ -19,12 +19,12 @@ func enter():
 	particles.emitting = true
 
 func process(delta: float):
-	if abs(motion.x) <= slide_threshold or not player.is_on_floor():
-		player.state = Player.MOVE
-	
 	motion = motion.move_toward(Vector2.ZERO, slide_deacceleration * delta)
 	player.velocity.x = motion.x
 	player.velocity.y = Vector2.DOWN.y * 10 # move down so is_on_floor() stays true
+	
+	if abs(motion.x) <= slide_threshold or not player.is_on_floor():
+		player.state = Player.MOVE
 
 func exit():
 	particles.emitting = false

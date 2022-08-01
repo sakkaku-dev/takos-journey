@@ -18,6 +18,7 @@ func enter():
 	player.face_dir = player.get_wall_collision() * -1
 	land_sound.play()
 	slide_sound.play()
+	player.velocity.y = 0
 
 func exit():
 	slide_sound.stop()

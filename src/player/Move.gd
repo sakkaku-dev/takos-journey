@@ -26,7 +26,7 @@ func process(delta: float):
 	if motion_x:
 		player.face_dir = Vector2.LEFT if motion_x < 0 else Vector2.RIGHT 
 		
-	if not player.is_on_floor() and player.is_moving_against_wall() and player.velocity.y > 0:
+	if not player.is_on_floor() and player.is_moving_against_wall() and player.velocity.y >= 0:
 		player.state = Player.WALL_SLIDE
 		
 	player.velocity += gravity

@@ -7,17 +7,25 @@ export var max_dash := 1
 
 onready var player: Player = owner
 
+var motion := Vector2.ZERO
+var to_wall_slide = false
 
 func can_enter():
 	return player.dash_count < max_dash
 
 func enter():
-	player.velocity = player.face_dir * dash_speed
+	motion = player.face_dir * dash_speed
 	player.dash_count += 1
+	player.velocity.y = 0
+	to_wall_slide = false
 
 func process(delta: float):
-	if abs(player.velocity.x) <= dash_threshold:
-		player.state = Player.MOVE
+	motion = motion.move_toward(Vector2.ZERO, deacceleration * delta)
+	player.velocity.x = motion.x
 	
-	player.velocity.x = move_toward(player.velocity.x, 0, deacceleration * delta)
-
+	if player.get_wall_collision():
+		to_wall_slide = true
+	
+	if abs(motion.x) <= dash_threshold:
+		player.state = Player.WALL_SLIDE if to_wall_slide else Player.MOVE
+	
