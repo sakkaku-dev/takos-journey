@@ -41,3 +41,5 @@ func process(delta):
 func just_pressed(action: String):
 	if action == "jump":
 		player.state = Player.WALL_JUMP
+	elif action == "slide":
+		player.state = Player.DASH

@@ -13,6 +13,9 @@ onready var player: Player = owner
 
 var motion := Vector2.ZERO
 
+func can_enter():
+	return player.is_on_floor()
+
 func enter():
 	motion = player.face_dir * slide_speed
 	slide_sound.play()

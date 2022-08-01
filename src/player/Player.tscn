@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://assets/characters/Ina.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -27,100 +27,177 @@
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 11 )
 
-[sub_resource type="AnimationNodeAnimation" id=47]
+[sub_resource type="AnimationNodeAnimation" id=98]
+animation = "TentacleOff"
+
+[sub_resource type="AnimationNodeAnimation" id=99]
+animation = "TentacleOn"
+
+[sub_resource type="AnimationNodeAnimation" id=71]
+animation = "Dash"
+
+[sub_resource type="AnimationNodeAnimation" id=72]
 animation = "Fall"
 
-[sub_resource type="AnimationNodeAnimation" id=49]
-animation = "Jump"
-
-[sub_resource type="AnimationNodeAnimation" id=58]
-animation = "WallSlide"
-
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=78]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=79]
 animation = "Run"
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=80]
 animation = "SlideEnd"
 
-[sub_resource type="AnimationNodeAnimation" id=26]
+[sub_resource type="AnimationNodeAnimation" id=81]
 animation = "SlideLoop"
 
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=82]
 animation = "SlideStart"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeStateMachineTransition" id=83]
 advance_condition = "moving"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+[sub_resource type="AnimationNodeStateMachineTransition" id=84]
 advance_condition = "not_moving"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+[sub_resource type="AnimationNodeStateMachineTransition" id=85]
 advance_condition = "sliding"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+[sub_resource type="AnimationNodeStateMachineTransition" id=86]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+[sub_resource type="AnimationNodeStateMachineTransition" id=87]
 advance_condition = "not_sliding"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+[sub_resource type="AnimationNodeStateMachineTransition" id=88]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=61]
-advance_condition = "sliding"
-
-[sub_resource type="AnimationNodeStateMachine" id=34]
-states/Idle/node = SubResource( 23 )
-states/Idle/position = Vector2( 543, 357 )
-states/Run/node = SubResource( 24 )
-states/Run/position = Vector2( 477, 239 )
-states/SlideEnd/node = SubResource( 25 )
-states/SlideEnd/position = Vector2( 850, 357 )
-states/SlideLoop/node = SubResource( 26 )
-states/SlideLoop/position = Vector2( 945, 239 )
-states/SlideStart/node = SubResource( 27 )
-states/SlideStart/position = Vector2( 758, 239 )
-transitions = [ "Idle", "Run", SubResource( 28 ), "Run", "Idle", SubResource( 29 ), "Run", "SlideStart", SubResource( 30 ), "SlideStart", "SlideLoop", SubResource( 31 ), "SlideLoop", "SlideEnd", SubResource( 32 ), "SlideEnd", "Idle", SubResource( 33 ), "Idle", "SlideStart", SubResource( 61 ) ]
+[sub_resource type="AnimationNodeStateMachine" id=76]
+states/Idle/node = SubResource( 78 )
+states/Idle/position = Vector2( 464, 260 )
+states/Run/node = SubResource( 79 )
+states/Run/position = Vector2( 464, 133 )
+states/SlideEnd/node = SubResource( 80 )
+states/SlideEnd/position = Vector2( 842, 260 )
+states/SlideLoop/node = SubResource( 81 )
+states/SlideLoop/position = Vector2( 842, 133 )
+states/SlideStart/node = SubResource( 82 )
+states/SlideStart/position = Vector2( 651, 133 )
+transitions = [ "Idle", "Run", SubResource( 83 ), "Run", "Idle", SubResource( 84 ), "Run", "SlideStart", SubResource( 85 ), "SlideStart", "SlideLoop", SubResource( 86 ), "SlideLoop", "SlideEnd", SubResource( 87 ), "SlideEnd", "Idle", SubResource( 88 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=53]
+[sub_resource type="AnimationNodeAnimation" id=73]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=74]
+animation = "WallSlide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=89]
 advance_condition = "falling"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+[sub_resource type="AnimationNodeStateMachineTransition" id=90]
 advance_condition = "rising"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=55]
-advance_condition = "grounded"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+[sub_resource type="AnimationNodeStateMachineTransition" id=91]
 advance_condition = "falling"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=59]
+[sub_resource type="AnimationNodeStateMachineTransition" id=92]
 advance_condition = "sliding"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+[sub_resource type="AnimationNodeStateMachineTransition" id=93]
 advance_condition = "not_sliding"
 
-[sub_resource type="AnimationNodeStateMachine" id=35]
-states/Fall/node = SubResource( 47 )
-states/Fall/position = Vector2( 531, 145 )
-states/Jump/node = SubResource( 49 )
-states/Jump/position = Vector2( 531, 353 )
-states/WallSlide/node = SubResource( 58 )
-states/WallSlide/position = Vector2( 297, 145 )
-states/grounded/node = SubResource( 34 )
-states/grounded/position = Vector2( 297, 285 )
-transitions = [ "Jump", "Fall", SubResource( 53 ), "grounded", "Jump", SubResource( 54 ), "Fall", "grounded", SubResource( 55 ), "grounded", "Fall", SubResource( 57 ), "Fall", "WallSlide", SubResource( 59 ), "WallSlide", "Fall", SubResource( 60 ) ]
-start_node = "grounded"
+[sub_resource type="AnimationNodeStateMachineTransition" id=94]
+advance_condition = "grounded"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+[sub_resource type="AnimationNodeStateMachineTransition" id=95]
+advance_condition = "dash"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=44]
+[sub_resource type="AnimationNodeStateMachineTransition" id=96]
+advance_condition = "dash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=97]
+advance_condition = "not_dash"
+
+[sub_resource type="AnimationNodeStateMachine" id=69]
+states/Dash/node = SubResource( 71 )
+states/Dash/position = Vector2( 393, 174 )
+states/Fall/node = SubResource( 72 )
+states/Fall/position = Vector2( 617, 174 )
+states/Grounded/node = SubResource( 76 )
+states/Grounded/position = Vector2( 617, 298 )
+states/Jump/node = SubResource( 73 )
+states/Jump/position = Vector2( 864, 174 )
+states/WallSlide/node = SubResource( 74 )
+states/WallSlide/position = Vector2( 617, 65 )
+transitions = [ "Grounded", "Fall", SubResource( 89 ), "Grounded", "Jump", SubResource( 90 ), "Jump", "Fall", SubResource( 91 ), "Fall", "WallSlide", SubResource( 92 ), "WallSlide", "Fall", SubResource( 93 ), "Fall", "Grounded", SubResource( 94 ), "Grounded", "Dash", SubResource( 95 ), "Fall", "Dash", SubResource( 96 ), "Dash", "Grounded", SubResource( 97 ) ]
+start_node = "Grounded"
+
+[sub_resource type="AnimationNodeOneShot" id=100]
+
+[sub_resource type="AnimationNodeOneShot" id=101]
+
+[sub_resource type="AnimationNodeBlendTree" id=70]
+graph_offset = Vector2( 44.2145, -3 )
+nodes/Animation/node = SubResource( 99 )
+nodes/Animation/position = Vector2( 460, 140 )
+"nodes/Animation 2/node" = SubResource( 98 )
+"nodes/Animation 2/position" = Vector2( 680, 220 )
+nodes/Main/node = SubResource( 69 )
+nodes/Main/position = Vector2( 280, 40 )
+nodes/TentaclesOff/node = SubResource( 100 )
+nodes/TentaclesOff/position = Vector2( 900, 120 )
+nodes/TentaclesOn/node = SubResource( 101 )
+nodes/TentaclesOn/position = Vector2( 640, 40 )
+nodes/output/position = Vector2( 1140, 60 )
+node_connections = [ "output", 0, "TentaclesOff", "TentaclesOff", 0, "TentaclesOn", "TentaclesOff", 1, "Animation 2", "TentaclesOn", 0, "Main", "TentaclesOn", 1, "Animation" ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=75]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=77]
+
+[sub_resource type="Animation" id=62]
+resource_name = "Dash"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Body:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 4, 1 ), Vector2( 5, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Tentacles:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Tentacles:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -3, 0 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Fall"
@@ -179,6 +256,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ Vector2( 0, 0 ), Vector2( 1, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Tentacles:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, -2 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Jump"
@@ -211,6 +300,18 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=6]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Tentacles:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, -2 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Run"
@@ -240,6 +341,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ Vector2( 2, 0 ), Vector2( 3, 0 ), Vector2( 4, 0 ), Vector2( 5, 0 ), Vector2( 6, 0 ), Vector2( 7, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/Tentacles:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, -2 ) ]
+}
 
 [sub_resource type="Animation" id=8]
 resource_name = "SlideEnd"
@@ -251,18 +364,6 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites/Tentacles:frame_coords")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
@@ -285,18 +386,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ Vector2( 13, 0 ), Vector2( 14, 0 ) ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites/Tentacles:frame_coords")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ Vector2( 13, 0 ), Vector2( 14, 0 ) ]
-}
 
 [sub_resource type="Animation" id=15]
 resource_name = "SlideStart"
@@ -313,8 +402,52 @@ tracks/0/keys = {
 "update": 1,
 "values": [ Vector2( 12, 0 ) ]
 }
+
+[sub_resource type="Animation" id=68]
+resource_name = "TentacleOff"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Tentacles:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 14, 0 ), Vector2( 13, 0 ), Vector2( 12, 0 ) ]
+}
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites/Tentacles:frame_coords")
+tracks/1/path = NodePath("Sprites/Tentacles:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=67]
+resource_name = "TentacleOn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Tentacles:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 12, 0 ), Vector2( 13, 0 ), Vector2( 14, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/Tentacles:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -323,7 +456,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 12, 0 ) ]
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=56]
@@ -454,19 +587,16 @@ position = Vector2( 0, 15 )
 local_coords = false
 
 [node name="Tentacles" type="Sprite" parent="Sprites"]
-visible = false
-position = Vector2( 0, -2 )
+position = Vector2( 1, -2 )
 texture = ExtResource( 13 )
 hframes = 15
 vframes = 2
-frame = 10
 
 [node name="Body" type="Sprite" parent="Sprites"]
 position = Vector2( 0, -2 )
 texture = ExtResource( 1 )
 hframes = 15
 vframes = 2
-frame = 18
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 4 )
@@ -474,24 +604,29 @@ texture_scale = 0.3
 energy = 0.5
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 35 )
+tree_root = SubResource( 70 )
 anim_player = NodePath("AnimationPlayer")
 active = true
-parameters/playback = SubResource( 11 )
-parameters/conditions/falling = true
-parameters/conditions/grounded = false
-parameters/conditions/not_sliding = false
-parameters/conditions/rising = false
-parameters/conditions/sliding = true
-parameters/grounded/playback = SubResource( 44 )
-parameters/grounded/conditions/moving = true
-parameters/grounded/conditions/not_moving = false
-parameters/grounded/conditions/not_sliding = false
-parameters/grounded/conditions/sliding = false
+parameters/Main/playback = SubResource( 75 )
+parameters/Main/conditions/dash = false
+parameters/Main/conditions/falling = false
+parameters/Main/conditions/grounded = false
+parameters/Main/conditions/not_dash = false
+parameters/Main/conditions/not_sliding = false
+parameters/Main/conditions/rising = false
+parameters/Main/conditions/sliding = false
+parameters/Main/Grounded/playback = SubResource( 77 )
+parameters/Main/Grounded/conditions/moving = false
+parameters/Main/Grounded/conditions/not_moving = false
+parameters/Main/Grounded/conditions/not_sliding = false
+parameters/Main/Grounded/conditions/sliding = false
+parameters/TentaclesOff/active = false
+parameters/TentaclesOn/active = false
 script = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
 root_node = NodePath("../..")
+anims/Dash = SubResource( 62 )
 anims/Fall = SubResource( 1 )
 anims/Idle = SubResource( 2 )
 anims/Jump = SubResource( 3 )
@@ -500,6 +635,8 @@ anims/Run = SubResource( 5 )
 anims/SlideEnd = SubResource( 8 )
 anims/SlideLoop = SubResource( 16 )
 anims/SlideStart = SubResource( 15 )
+anims/TentacleOff = SubResource( 68 )
+anims/TentacleOn = SubResource( 67 )
 anims/WallSlide = SubResource( 56 )
 
 [connection signal="just_pressed" from="DeviceSwitcher/PlayerInput" to="." method="_on_PlayerInput_just_pressed"]

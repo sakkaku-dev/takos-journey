@@ -1,19 +1,26 @@
 extends AnimationTree
 
 onready var anim := $AnimationPlayer
+onready var tentacle_anim := $TentaclesAnimation
 
-const GROUNDED = "parameters/conditions/grounded"
+const GROUNDED = "parameters/Main/conditions/grounded"
 
-const FALLING = "parameters/conditions/falling"
-const RISING = "parameters/conditions/rising"
+const FALLING = "parameters/Main/conditions/falling"
+const RISING = "parameters/Main/conditions/rising"
 
-const MOVING = "parameters/grounded/conditions/moving"
-const NOT_MOVING = "parameters/grounded/conditions/not_moving"
-const SLIDING = "parameters/grounded/conditions/sliding"
-const NOT_SLIDING = "parameters/grounded/conditions/not_sliding"
+const MOVING = "parameters/Main/Grounded/conditions/moving"
+const NOT_MOVING = "parameters/Main/Grounded/conditions/not_moving"
+const SLIDING = "parameters/Main/Grounded/conditions/sliding"
+const NOT_SLIDING = "parameters/Main/Grounded/conditions/not_sliding"
 
-const WALL_SLIDING = "parameters/conditions/sliding"
-const NOT_WALL_SLIDING = "parameters/conditions/not_sliding"
+const WALL_SLIDING = "parameters/Main/conditions/sliding"
+const NOT_WALL_SLIDING = "parameters/Main/conditions/not_sliding"
+
+const DASH = "parameters/Main/conditions/dash"
+const NOT_DASH = "parameters/Main/conditions/not_dash"
+
+const TENTACLE_ON = "parameters/TentaclesOn/active"
+const TENTACLE_OFF = "parameters/TentaclesOff/active"
 
 func _ready():
 	active = true
@@ -32,3 +39,10 @@ func update_animation(player: Player):
 	
 	set(WALL_SLIDING, player.state == Player.WALL_SLIDE)
 	set(NOT_WALL_SLIDING, not get(WALL_SLIDING))
+	
+	set(DASH, player.state == Player.DASH)
+	set(NOT_DASH, not get(DASH))
+	
+#	set(TENTACLE_ON, player.tentacle_mode)
+#	set(TENTACLE_OFF, not player.tentacle_mode)
+	

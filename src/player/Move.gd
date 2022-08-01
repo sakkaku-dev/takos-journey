@@ -38,8 +38,7 @@ func exit():
 func just_pressed(action: String):
 	if action == "slide":
 		if not player.tentacle_mode:
-			if player.is_on_floor():
-				player.state = Player.SLIDE
+			player.state = Player.SLIDE
 		else:
 			player.state = Player.DASH
 		

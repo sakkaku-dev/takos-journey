@@ -11,7 +11,7 @@ var motion := Vector2.ZERO
 var to_wall_slide = false
 
 func can_enter():
-	return player.dash_count < max_dash
+	return player.dash_count < max_dash and player.tentacle_mode
 
 func enter():
 	motion = player.face_dir * dash_speed
@@ -23,7 +23,7 @@ func process(delta: float):
 	motion = motion.move_toward(Vector2.ZERO, deacceleration * delta)
 	player.velocity.x = motion.x
 	
-	if player.get_wall_collision():
+	if player.get_wall_collision() and not player.is_on_floor():
 		to_wall_slide = true
 	
 	if abs(motion.x) <= dash_threshold:
