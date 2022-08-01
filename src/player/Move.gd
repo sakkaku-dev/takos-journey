@@ -8,7 +8,6 @@ onready var run_particle := get_node(run_particles_path)
 
 onready var gravity = ProjectSettings.get("physics/2d/default_gravity_vector") * ProjectSettings.get("physics/2d/default_gravity")
 
-
 onready var walk_sound := $WalkSound
 onready var player: Player = owner
 
