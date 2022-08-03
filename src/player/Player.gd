@@ -1,5 +1,7 @@
 class_name Player extends KinematicBody2D
 
+signal died()
+
 enum {
 	MOVE,
 	SLIDE,
@@ -91,3 +93,7 @@ func is_moving_against_wall():
 
 func reset_dash():
 	dash_count = 0
+
+
+func _on_HurtBox_damaged():
+	emit_signal("died")

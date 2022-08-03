@@ -178,6 +178,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
+GameState="*res://src/GameState.gd"
 
 [display]
 
@@ -279,5 +280,5 @@ locale_filter=[ 0, [  ] ]
 
 [rendering]
 
-environment/default_clear_color=Color( 0.0313726, 0.027451, 0.0196078, 1 )
+environment/default_clear_color=Color( 0.027451, 0.0235294, 0.0196078, 1 )
 environment/default_environment="res://default_env.tres"

@@ -1,7 +1,6 @@
 extends AnimationTree
 
 onready var anim := $AnimationPlayer
-onready var tentacle_anim := $TentaclesAnimation
 
 const GROUNDED = "parameters/Main/conditions/grounded"
 
