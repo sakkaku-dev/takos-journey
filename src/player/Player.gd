@@ -14,6 +14,7 @@ enum {
 onready var input := $DeviceSwitcher/PlayerInput
 onready var sprite := $Sprites
 onready var anim_tree := $AnimationTree
+onready var interact := $Interact
 
 onready var jump := $States/Jump
 onready var slide := $States/Slide
@@ -26,6 +27,7 @@ onready var land := $States/Land
 onready var left_wall_cast := $WallCast/LeftWall
 onready var right_wall_cast := $WallCast/RightWall
 
+
 var logger = Logger.new("Player")
 
 var face_dir := Vector2.RIGHT
@@ -33,6 +35,7 @@ var velocity := Vector2.ZERO
 var state := MOVE setget _set_state
 var tentacle_mode := false
 var dash_count = 0
+var holding_book := false
 
 func _set_state(s):
 	if state == s or not _get_state_node(s).can_enter():
@@ -73,6 +76,9 @@ func _physics_process(delta):
 
 func _on_PlayerInput_just_pressed(action):
 	_current_state().just_pressed(action)
+	
+	if action == "interact":
+		interact.interact()
 
 func _on_PlayerInput_just_released(action):
 	_current_state().just_released(action)
@@ -97,3 +103,9 @@ func reset_dash():
 
 func _on_HurtBox_damaged():
 	emit_signal("died")
+
+
+func _on_Interact_interacted(type):
+	if type == Interact.Type.BOOK:
+		holding_book = true
+		GameState.holding_book = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://assets/characters/Ina.png" type="Texture" id=1]
 [ext_resource path="res://src/player/Player.gd" type="Script" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://src/particles/SlideParticles.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/player/ClosedBook.tres" type="SpriteFrames" id=25]
 [ext_resource path="res://src/player/HurtBox.gd" type="Script" id=26]
+[ext_resource path="res://src/player/Interact.gd" type="Script" id=27]
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 11 )
@@ -569,6 +570,8 @@ tracks/1/keys = {
 [sub_resource type="RectangleShape2D" id=103]
 extents = Vector2( 7, 10 )
 
+[sub_resource type="RectangleShape2D" id=104]
+
 [node name="Player" type="KinematicBody2D"]
 z_index = 2
 collision_layer = 2
@@ -752,7 +755,16 @@ script = ExtResource( 26 )
 position = Vector2( 0, 2 )
 shape = SubResource( 103 )
 
+[node name="Interact" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact"]
+shape = SubResource( 104 )
+
 [connection signal="just_pressed" from="DeviceSwitcher/PlayerInput" to="." method="_on_PlayerInput_just_pressed"]
 [connection signal="just_released" from="DeviceSwitcher/PlayerInput" to="." method="_on_PlayerInput_just_released"]
 [connection signal="visibility_changed" from="Sprites/Tentacles" to="Sprites" method="_on_Tentacles_visibility_changed"]
 [connection signal="damaged" from="HurtBox" to="." method="_on_HurtBox_damaged"]
+[connection signal="interacted" from="Interact" to="." method="_on_Interact_interacted"]

@@ -43,13 +43,13 @@ func just_pressed(action: String):
 			player.state = Player.DASH
 		
 		
-	if action == "jump":
+	elif action == "jump":
 		if player.is_on_floor():
 			player.state = Player.JUMP
 		elif player.get_wall_collision():
 			player.state = Player.WALL_JUMP
 			
-	if action == "switch_mode":
+	elif action == "switch_mode" and player.holding_book:
 		player.tentacle_mode = !player.tentacle_mode
 
 func just_released(action: String):
