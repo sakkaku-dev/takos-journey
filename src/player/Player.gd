@@ -109,3 +109,7 @@ func _on_Interact_interacted(type):
 	if type == Interact.Type.BOOK:
 		holding_book = true
 		GameState.holding_book = true
+
+
+func _on_TentacleLimit_exceeded_limit():
+	_on_HurtBox_damaged()
