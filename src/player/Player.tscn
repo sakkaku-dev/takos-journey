@@ -695,19 +695,18 @@ position = Vector2( 1, -2 )
 texture = ExtResource( 13 )
 hframes = 15
 vframes = 2
-frame = 1
 
 [node name="Body" type="Sprite" parent="Sprites"]
 position = Vector2( 0, -2 )
 texture = ExtResource( 1 )
 hframes = 15
 vframes = 2
-frame = 1
 
 [node name="Book" type="AnimatedSprite" parent="Sprites"]
 position = Vector2( 1, 7 )
 frames = ExtResource( 25 )
 animation = "close"
+frame = 1
 playing = true
 
 [node name="Light2D" type="Light2D" parent="."]
